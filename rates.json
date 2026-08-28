@@ -1,8 +1,1 @@
-{
-  "vtb_cny": {
-    "offer": 12.9125,
-    "bid": 12.4835,
-    "fetched_at": "2026-08-27T15:49:00",
-    "source": "google-sheets"
-  }
-}
+{"vtb_cny":{"offer":12.8125,"bid":12.5955,"fetched_at":"2026-08-28T11:20:00","source":"vtb-online"}}
