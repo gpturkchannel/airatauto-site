@@ -1,0 +1,58 @@
+name: Update CNY Rate
+
+on:
+  schedule:
+    - cron: '15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-rate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch CNY rate
+        run: python scripts/fetch_vtb_rate.py
+
+      - name: Patch index.html (one-time)
+        run: |
+          if ! grep -q "rates.json" index.html; then
+            python3 - <<'PYEOF'
+          MARKER = "  // -- VTB: chitaem Google Sheets napryamuyu (obnovlyaetsya kazhdyy chas)"
+          MARKER2 = "  // ── ВТБ: читаем Google Sheets напрямую (обновляется каждый час)"
+          PATCH = "  // rates.json: GitHub Actions updates every hour\n    fetch('/rates.json?_=' + Date.now())\n      .then(r => r.ok ? r.json() : Promise.reject())\n      .then(data => { const rate = data && data.vtb_cny && data.vtb_cny.offer; if (rate > 8 && rate < 20) { if (typeof setRate === 'function') setRate('rVTB', rate, 2); _VTB_RATE = rate; } })\n      .catch(() => {});\n\n"
+          with open('index.html', 'r', encoding='utf-8') as f:
+              html = f.read()
+          for M in [MARKER, MARKER2]:
+              if M in html:
+                  html = html.replace(M, PATCH + M, 1)
+                  with open('index.html', 'w', encoding='utf-8') as f:
+                      f.write(html)
+                  print('Patched OK')
+                  break
+          else:
+              print('Marker not found, skipping')
+          PYEOF
+          else
+            echo "Already patched"
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add rates.json index.html
+          git diff --staged --quiet || git commit -m "chore: update CNY rate $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push
