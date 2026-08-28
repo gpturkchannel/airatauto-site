@@ -2921,6 +2921,9 @@ function sendMForm(btn) {
     if (window.history && window.location.hash) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
+  } else {
+    // Нет реферала в URL — сбрасываем сохранённый, чтобы старый не "прилипал"
+    try { localStorage.removeItem('airat_ref'); } catch(e) {}
   }
 })();
 function getRef() {
