@@ -2998,7 +2998,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN — курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.5028;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.8030;  // ВТБ — реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.8030;
+const _VTB_TIME = '2026-10-13T19:05:00.13';  // время курса ВТБ на момент сборки — rates.json применяем, только если он свежее  // ВТБ — реальный курс покупки юаней (выше ЦБ)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
 const _BANK_PCT = 0.00;    // банковская комиссия (ВТБ включает в курс — уже в _VTB_RATE)
@@ -4155,7 +4156,7 @@ renderFeatured();
     .then(r => r.ok ? r.json() : Promise.reject())
     .then(d => {
       const v = d && d.vtb_cny, rate = v && v.offer;
-      if (rate > 8 && rate < 25) {
+      if (rate > 8 && rate < 25 && String(v.vtb_time || '') >= _VTB_TIME) {
         setRate('rVTB', rate, 2);
         if (Math.abs(rate - _VTB_RATE) > 0.005) {
           _VTB_RATE = rate;
