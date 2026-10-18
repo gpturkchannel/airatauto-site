@@ -660,6 +660,10 @@ footer{padding:28px 80px;background:var(--s1);border-top:1px solid var(--b1);dis
 .promo-strip-t b{display:block;color:#fff;font-size:15px;font-weight:800}
 .promo-strip-t span{display:block;color:var(--t3);font-size:12px;margin-top:2px}
 .promo-strip-t code{color:var(--gold);font-weight:800;font-family:inherit;letter-spacing:.5px}
+.promo-get{display:flex;gap:8px;margin-top:8px}
+.promo-get-t{color:var(--t2,#ccc);font-size:13px;font-weight:700;margin:10px 2px 0}
+.promo-get a{flex:1;min-width:0;text-align:center;padding:12px 6px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;color:#fff}
+.pg-tg{background:#229ED9} .pg-wa{background:#1faa53}
 .promo-strip button{flex:0 0 auto;background:var(--gold);color:#000;border:0;border-radius:9px;padding:10px 12px;font-weight:800;font-size:12px;cursor:pointer;font-family:inherit}
 #promoStripSec{padding:18px 0 6px;background:var(--bg)}
 .review-saving{flex-wrap:wrap;row-gap:2px}
@@ -1151,7 +1155,10 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="promo-strip"><div class="promo-strip-in" onclick="copyPromo(this.querySelector('.ps-copy'))" style="cursor:pointer">
     <div class="promo-strip-ic">🎁</div>
     <div class="promo-strip-t"><b>Скидка 20 000 ₽ от Айрата</b><span>Промокод <code>AIRAT-20K</code> — назовите при обращении · <u class="ps-copy">скопировать</u></span></div>
-  </div></div>
+  </div>
+  <div class="promo-get-t">🎁 Получить скидку — куда удобнее:</div>
+  <div class="promo-get"><a class="pg-tg" href="#" onclick="return _promoGo('tg')">✈️ Telegram</a><a class="pg-wa" href="#" onclick="return _promoGo('wa')">💬 WhatsApp</a></div>
+  </div>
 </section>
 
 <!-- BRAND MARQUEE -->
@@ -1273,7 +1280,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
     </div>
     <div class="m-sticky">
       <button class="ms-lead" onclick="_goCalc('ncm')">📩 Оставить заявку</button>
-      <a class="ms-ic ms-tg" href="#" onclick="var a=document.getElementById('ncmTgBtn');if(a&&a.href&&a.getAttribute('href')!=='#'){window.open(a.href,'_blank')}else{window.open('https://t.me/airatauto','_blank')};return false" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
+      <a class="ms-ic ms-tg" href="#" onclick="var a=document.getElementById('ncmTgBtn');if(a&&a.href&&a.getAttribute('href')!=='#'){a.click()}else{_airatEvent('tg');window.open('https://t.me/airatauto','_blank')};return false" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
       <a class="ms-ic ms-wa" href="#" onclick="var a=document.getElementById('ncmWaBtn');if(a){a.click()};return false" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12.001 2C6.478 2 2 6.478 2 12.001c0 1.822.473 3.53 1.299 5.016L2 22l5.099-1.278A9.946 9.946 0 0012 22c5.523 0 10-4.478 10-10S17.523 2 12 2z"/></svg></a>
     </div>
   </div>
@@ -1803,7 +1810,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
     </div>
     <div class="m-sticky">
       <button class="ms-lead" onclick="_goCalc('m')">📩 Оставить заявку</button>
-      <a class="ms-ic ms-tg" href="#" onclick="var a=document.getElementById('mTg');if(a&&a.href&&a.getAttribute('href')!=='#'){window.open(a.href,'_blank')}else{window.open('https://t.me/airatauto','_blank')};return false" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
+      <a class="ms-ic ms-tg" href="#" onclick="var a=document.getElementById('mTg');if(a&&a.href&&a.getAttribute('href')!=='#'){a.click()}else{_airatEvent('tg');window.open('https://t.me/airatauto','_blank')};return false" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
       <a class="ms-ic ms-wa" href="#" onclick="var a=document.getElementById('mWa');if(a){a.click()};return false" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12.001 2C6.478 2 2 6.478 2 12.001c0 1.822.473 3.53 1.299 5.016L2 22l5.099-1.278A9.946 9.946 0 0012 22c5.523 0 10-4.478 10-10S17.523 2 12 2z"/></svg></a>
     </div>
     <button class="m-close" id="mClose">&#10005;</button>
@@ -2744,6 +2751,7 @@ function openModal(c) {
   const _mp0 = document.getElementById('mPane0');
   if (_mp0) _mp0.classList.add('show');
   _modalCar = c;
+  try { _airatEvent('car', {c: ((c.brand || '') + ' ' + (c.model || '') + ' ' + (c.year || '')).replace(/\s+/g, ' ').trim().slice(0, 80)}); } catch(e) {}
   // Обновляем ♡ в модале
   var _mfb = document.getElementById('mFavBtn');
   if (_mfb) { _mfb.classList.toggle('on', isFav(c.id)); _mfb.textContent = isFav(c.id)?'♥':'♡'; }
@@ -3081,6 +3089,20 @@ function _airatRef() {
     }
   } catch(e) {}
 })();
+function _promoGo(k) {
+  // v9.16.6: человек сам выбирает, куда получить скидку; партнёр видит нажатие, менеджер — контакт
+  var r = _airatRef(), u;
+  _airatEvent('promo');
+  if (k === 'tg') {
+    _airatEvent('tg');
+    u = 'https://t.me/' + AIRAT_BOT + '?start=promo' + (r.p ? '_' + r.p + '_' + (r.v || 0) : '');
+  } else {
+    _airatEvent('wa');
+    u = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Здравствуйте! Хочу скидку 20 000 ₽ по промокоду AIRAT-20K.' + (r.p ? '\nМой код: ' + r.p : ''));
+  }
+  window.open(u, '_blank');
+  return false;
+}
 function _airatEvent(e, info) {
   var r = _airatRef(); if (!r.p) return;
   var b = {p: r.p, v: r.v || 0, e: e}; if (info) b.i = info;
@@ -3098,7 +3120,12 @@ document.addEventListener('click', function(ev) {
   var a = ev.target && ev.target.closest ? ev.target.closest('a') : null; if (!a) return;
   var r = _airatRef(), href = a.getAttribute('href') || '';
   if (a.hasAttribute('data-phwa') || /wa\.me\//.test(a.href)) {
-    if (r.p) a.href = a.href.split('?')[0] + '?text=' + encodeURIComponent('Здравствуйте! Интересует авто из Китая. Мой код: ' + r.p);
+    if (r.p) {   // v9.16.6: текст про машину не теряем — код партнёра дописываем в конец
+      var _u = a.href.split('?'), _t = '';
+      try { _t = new URLSearchParams(_u[1] || '').get('text') || ''; } catch(e) {}
+      if (_t.indexOf('Мой код') < 0) _t = (_t ? _t + '\n' : 'Здравствуйте! Интересует авто из Китая.\n') + 'Мой код: ' + r.p;
+      a.href = _u[0] + '?text=' + encodeURIComponent(_t);
+    }
     _airatEvent('wa'); return;
   }
   if (/^tel:/.test(href)) { _airatEvent('call'); return; }
@@ -3108,7 +3135,10 @@ document.addEventListener('click', function(ev) {
     if (r.p) a.href = 'https://t.me/' + AIRAT_BOT + '?startapp=go_' + r.p + '&mode=compact';
     _airatEvent('tg'); return;
   }
-  if (/t\.me\//.test(a.href)) { _airatEvent('tg'); }
+  if (/t\.me\//.test(a.href)) {
+    if (r.p && /[?&]text=/.test(a.href) && a.href.indexOf(encodeURIComponent('Мой код')) < 0) a.href += encodeURIComponent('\nМой код: ' + r.p);
+    _airatEvent('tg');
+  }
 }, true);
 
 // ── Контакт-попап ─────────────────────────────────────────────────────────────
@@ -3713,6 +3743,7 @@ function openNewCarModal(nc) {
   }
   document.getElementById('ncmBrand').textContent = nc.brand || '';
   document.getElementById('ncmTitle').textContent = (nc.model || '') + (nc.complect ? ' · ' + nc.complect : '');
+  try { _airatEvent('car', {c: ('Новый ' + (nc.brand || '') + ' ' + (nc.model || '')).replace(/\s+/g, ' ').trim().slice(0, 80)}); } catch(e) {}
   // Комплектации + мощность
   var _trims = getCarTrims(nc);
   var _complectHtml = nc.power ? '<span style="font-size:12px;color:var(--t3)">' + nc.power + '</span>' : '';
