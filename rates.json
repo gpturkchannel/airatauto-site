@@ -1,9 +1,7 @@
 {
   "vtb_cny": {
     "offer": 12.3115,
-    "bid": 11.8395,
     "vtb_time": "2026-10-30T23:35:00.145",
-    "fetched_at": "2026-10-30T20:43:47Z",
     "source": "vtb-online-500k"
   }
 }
