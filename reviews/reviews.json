@@ -4,13 +4,15 @@
    "file": "vr_kia.mp4",
    "poster": "vr_kia.jpg",
    "title": "Видеоотзыв владелицы KIA",
-   "sub": "Рассказывает, как прошла покупка и что получила"
+   "sub": "Рассказывает, как прошла покупка и что получила",
+   "dur": 41
   },
   {
    "file": "vr_client2.mp4",
    "poster": "vr_client2.jpg",
    "title": "Видеоотзыв клиента",
-   "sub": "Забрал машину и делится впечатлениями"
+   "sub": "Забрал машину и делится впечатлениями",
+   "dur": 47
   }
  ],
  "text": [
@@ -55,7 +57,8 @@
   {
    "file": "vd_avtovoz.mp4",
    "poster": "vd_avtovoz.jpg",
-   "title": "Машины приехали на автовозе"
+   "title": "Машины приехали на автовозе",
+   "dur": 9
   },
   {
    "file": "r_vydacha_kia.jpg",
@@ -64,22 +67,26 @@
   {
    "file": "vd_cx5.mp4",
    "poster": "vd_cx5.jpg",
-   "title": "Mazda CX-5 после доставки"
+   "title": "Mazda CX-5 после доставки",
+   "dur": 63
   },
   {
    "file": "vd_zhukovsky.mp4",
    "poster": "vd_zhukovsky.jpg",
-   "title": "Выдача в Жуковском"
+   "title": "Выдача в Жуковском",
+   "dur": 15
   },
   {
    "file": "vd_white.mp4",
    "poster": "vd_white.jpg",
-   "title": "Осмотр машины при выдаче"
+   "title": "Осмотр машины при выдаче",
+   "dur": 39
   },
   {
    "file": "vd_cx5b.mp4",
    "poster": "vd_cx5b.jpg",
-   "title": "Mazda CX-5, обзор при выдаче"
+   "title": "Mazda CX-5, обзор при выдаче",
+   "dur": 42
   }
  ]
 }
