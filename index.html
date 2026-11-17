@@ -1053,7 +1053,18 @@ footer{padding:28px 80px;background:var(--s1);border-top:1px solid var(--b1);dis
 .qp-t span{color:var(--t2);font-size:13px}
 .qp-in select{flex:1 1 160px;background:var(--s2);color:#fff;border:1px solid var(--b3);border-radius:10px;padding:12px;font-size:15px;font-family:inherit}
 .qp-go{flex:0 0 auto;background:#fff;color:#0a0a0d;border:0;border-radius:10px;padding:13px 20px;font-weight:800;font-size:15px}
-.qp-quiz{flex:1 1 100%;background:var(--red);color:#fff;border:0;border-radius:10px;padding:14px 18px;font-weight:800;font-size:15px}
+.qp-quiz{flex:1 1 100%;background:transparent;color:#e8c98a;border:1px solid rgba(201,164,92,.55);border-radius:10px;padding:14px 18px;font-weight:700;font-size:15px}
+.qp-quiz:hover{background:rgba(201,164,92,.08)}
+#qpRes{max-width:1180px;margin:0 auto;padding:0 16px}
+.qpr{margin-top:14px;padding:22px;border-radius:16px;background:linear-gradient(180deg,#16171d,#101116);border:1px solid rgba(201,164,92,.35)}
+.qpr-h{font-size:19px;font-weight:800;color:#fff;margin-bottom:6px}
+.qpr-s{font-size:14px;line-height:1.55;color:var(--t2);margin-bottom:14px}
+.qpr-f{display:flex;flex-wrap:wrap;gap:8px}
+.qpr-f input{flex:1 1 160px;background:#0c0d11;border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;padding:13px 14px;font-size:15px}
+.qpr-b{flex:1 1 100%;background:linear-gradient(180deg,#e2c27f,#c9a45c);color:#141414;border:0;border-radius:10px;padding:14px;font-weight:800;font-size:15px;cursor:pointer}
+@media(min-width:700px){.qpr-b{flex:0 0 auto;padding:13px 22px}}
+.qpr-ok{display:block;margin-top:10px;font-size:12px;color:var(--t2)}.qpr-ok a{color:#c9a45c}
+.qpr-wa{display:inline-block;margin-top:10px;font-size:13px;color:#c9a45c}
 @media(min-width:1000px){.qp-quiz{flex:0 0 auto}}
 .qz-ov{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:16px}
 .qz-ov.open{display:flex}
@@ -1114,7 +1125,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="rate-sep-line"></div>
   <div class="rate-item" id="rVTBWrap">
     <span class="r-ic r-ic-vtb">ВТБ ¥</span><span class="r-code" style="color:#4d9fff;font-weight:700">ВТБ <span style="opacity:.65;font-weight:500">(CNY)</span></span>
-    <span class="r-val" id="rVTB">12.45 ₽</span>
+    <span class="r-val" id="rVTB">12.44 ₽</span>
   </div>
   <span class="rate-upd" id="rateUpd">ЦБ РФ</span>
 </div>
@@ -1239,6 +1250,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
     <button class="qp-go" onclick="heroPick()">Показать машины</button>
     <button class="qp-quiz" onclick="openQuiz()">Подобрать машину за 5 минут</button>
   </div>
+  <div id="qpRes"></div>
 </section>
 <!-- v9.15: доверие, где нас посмотреть -->
 <section id="trust">
@@ -3284,8 +3296,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN, курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.0873;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.4465;
-const _VTB_TIME = '2026-11-17T13:20:00.154';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.4370;
+const _VTB_TIME = '2026-11-17T15:50:01.021';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
 const _BANK_PCT = 0.00;    // банковская комиссия (ВТБ включает в курс, уже в _VTB_RATE)
@@ -4660,10 +4672,35 @@ function qzSend(btn){
 }
 function heroPick(){
   var b=document.getElementById('qpBrand').value,m=parseInt(document.getElementById('qpBudget').value)||0;
-  if(b&&brands.indexOf(b)<0){ymGoal('quick_pick_order');openQuiz({brand:b});return}
+  var R=document.getElementById('qpRes');if(R)R.innerHTML='';
+  if(b&&brands.indexOf(b)<0){ymGoal('quick_pick_order');qpOrder(b,m,0);return}
+  try{var n=allCars.filter(function(c){if(b&&c.brand!==b)return false;if(!m)return true;var p=calcCarPrice(c.price_cny,c.year,c.hp,c.car_ym,c.engine_cc,c.price_yuan_card);return p>300000&&p<=m}).length;if(!n){qpOrder(b,m,1);return}}catch(e){}
   try{openCatalog()}catch(e){}
   try{bf.querySelectorAll('.bp').forEach(function(x){x.classList.remove('on')});var btn=bf.querySelector('[data-b="'+(b||'all')+'"]');if(btn)btn.classList.add('on');curBrand=b||'all';curBudget=m;page=1;updateModels();render()}catch(e){}
   ymGoal('quick_pick');
+}
+function qpOrder(b,m,inCat){
+  var R=document.getElementById('qpRes');if(!R)return;
+  var bud=m?' до '+new Intl.NumberFormat('ru-RU').format(m)+' ₽':'';
+  var nm=b||'машину';
+  var head=inCat?('Сейчас в каталоге нет '+nm+bud):(nm+' привезём под заказ');
+  var sub=inCat?'Каталог обновляется каждый день. Оставьте номер, Айрат подберёт варианты под ваш бюджет и пришлёт цену под ключ.':'Этой марки сейчас нет в каталоге, но мы привозим любые марки из Китая. Оставьте номер, Айрат подберёт варианты'+bud+' и пришлёт цену под ключ.';
+  var wa='https://wa.me/79272769004?text='+encodeURIComponent('Здравствуйте! Хочу '+nm+bud+'. Подберите варианты, пожалуйста.');
+  R.innerHTML='<div class="qpr"><div class="qpr-h">'+head+'</div><div class="qpr-s">'+sub+'</div>'+
+   '<div class="qpr-f"><input id="qprName" placeholder="Имя"><input id="qprPhone" type="tel" placeholder="Телефон"><button class="qpr-b" onclick="qprSend(this)">Получить варианты</button></div>'+
+   '<label class="qpr-ok"><input type="checkbox" id="qprOk" checked> Согласен на обработку <a href="/policy.html" target="_blank">персональных данных</a></label>'+
+   '<a class="qpr-wa" href="'+wa+'" target="_blank" rel="noopener">или написать Айрату в WhatsApp</a></div>';
+  R.dataset.b=b;R.dataset.m=m;R.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function qprSend(btn){
+  var R=document.getElementById('qpRes'),n=(document.getElementById('qprName').value||'').trim(),p=(document.getElementById('qprPhone').value||'').trim();
+  if(p.replace(/\D/g,'').length<10){alert('Укажите номер телефона');return}
+  if(!document.getElementById('qprOk').checked){alert('Нужно согласие на обработку персональных данных');return}
+  var b=R.dataset.b||'Любая марка',m=+R.dataset.m||0;
+  btn.disabled=true;btn.textContent='Отправляем...';
+  _tgContact({name:n||'Без имени',phone:p,car:'Быстрый подбор: '+b,message:'Марка: '+b+'\nБюджет: '+(m?'до '+new Intl.NumberFormat('ru-RU').format(m)+' ₽':'любой')}).then(function(){
+    R.innerHTML='<div class="qpr"><div class="qpr-h">Заявка отправлена</div><div class="qpr-s">Айрат подберёт варианты и свяжется с вами в ближайшее время.</div></div>';
+  }).catch(function(){btn.disabled=false;btn.textContent='Получить варианты';alert('Не получилось отправить. Напишите нам в WhatsApp или Telegram.')});
 }
 (function(){try{var s=document.getElementById('qpBrand'),L=_brandList();
   function grp(label,arr){var g=document.createElement('optgroup');g.label=label;arr.forEach(function(b){var o=document.createElement('option');o.value=b;o.textContent=b;g.appendChild(o)});s.appendChild(g)}
