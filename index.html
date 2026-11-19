@@ -1128,7 +1128,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="rate-sep-line"></div>
   <div class="rate-item" id="rVTBWrap">
     <span class="r-ic r-ic-vtb">ВТБ ¥</span><span class="r-code" style="color:#4d9fff;font-weight:700">ВТБ <span style="opacity:.65;font-weight:500">(CNY)</span></span>
-    <span class="r-val" id="rVTB">12.38 ₽</span>
+    <span class="r-val" id="rVTB">12.37 ₽</span>
   </div>
   <span class="rate-upd" id="rateUpd">ЦБ РФ</span>
 </div>
@@ -3302,8 +3302,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN, курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.0873;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.3825;
-const _VTB_TIME = '2026-11-19T12:05:00.106';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.3650;
+const _VTB_TIME = '2026-11-19T12:20:00.119';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
 let _USD_RUB  = 80.0;  // 19.11: курс доллара ЦБ (обновляется живым курсом)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
@@ -4823,13 +4823,95 @@ var r=window.runTCCalc,used=false;if(typeof r==='function')window.runTCCalc=func
 
 <style>
 /* 19.11: чередование блоков, тёмный / графитовый, чтобы глаз видел границы */
-:root{--alt:#161820}
+:root{--alt:#1b1e28}
 #quickpick,#promoStripSec,#catalog,#steps,#about,#contacts{background:var(--bg)!important}
 #trust,#featured,#customs-calc,#reviews,#faq{background:var(--alt)!important;box-shadow:0 0 0 100vmax var(--alt);clip-path:inset(0 -100vmax)}
-#trust,#featured,#customs-calc,#reviews,#faq,#steps,#about,#contacts,#catalog{border-top:1px solid rgba(255,255,255,.06)}
+#trust,#featured,#customs-calc,#reviews,#faq,#steps,#about,#contacts,#catalog{border-top:1px solid rgba(255,255,255,.09)}
+#trust,#featured,#customs-calc,#reviews,#faq{background-image:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0) 240px)!important}
 #trust{padding-bottom:30px!important}
 #featured+#catalog,#featured + section{padding-top:56px!important}
 #customs-calc .tc-input-wrap,#reviews .review-card{background:rgba(11,13,18,.55)}
 </style>
+
+<style>
+/* 19.11: подпись машины в слайдере + быстрый заказ */
+.hcap{position:absolute;right:36px;bottom:58px;z-index:30;pointer-events:auto;text-align:right;transition:opacity .5s}
+.hcap.fade{opacity:0}
+.hcap-n{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:600}
+.hcap-b{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:7px 14px;border-radius:20px;border:1px solid rgba(192,154,80,.45);background:rgba(10,11,15,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--gold);font:600 12px/1 inherit;font-family:inherit;cursor:pointer;transition:background .2s,border-color .2s}
+.hcap-b:hover{background:rgba(192,154,80,.14);border-color:var(--gold)}
+@media(max-width:768px){.hcap{right:12px;bottom:calc(178px + env(safe-area-inset-bottom,0px))}.hcap-n{font-size:10px;letter-spacing:2px}.hcap-b{padding:6px 12px;font-size:11px;margin-top:4px}}
+.hq-ov{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px}
+.hq-ov.open{display:flex}
+.hq-box{width:100%;max-width:400px;background:#14161d;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px 22px 20px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.hq-x{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--t3);font-size:22px;cursor:pointer}
+.hq-ey{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.hq-t{font-size:22px;font-weight:800;margin:6px 0 4px}
+.hq-s{font-size:13px;color:var(--t3);margin-bottom:14px}
+.hq-box .finp{width:100%;margin-bottom:8px}
+.hq-send{width:100%;padding:14px;border-radius:12px;border:none;background:var(--gold);color:#111;font:700 15px inherit;font-family:inherit;cursor:pointer;margin-top:4px}
+.hq-alt{display:flex;gap:8px;margin-top:10px}
+.hq-alt a{flex:1;text-align:center;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);color:var(--t2);font-size:13px;font-weight:600;text-decoration:none}
+.hq-ok{text-align:center;padding:20px 0;font-size:15px;color:var(--t2)}
+</style>
+<div class="hq-ov" id="hqOv" onclick="if(event.target===this)hqClose()">
+  <div class="hq-box">
+    <button class="hq-x" onclick="hqClose()" aria-label="Закрыть">&#10005;</button>
+    <div id="hqBody">
+      <div class="hq-ey">Заказ под ключ</div>
+      <div class="hq-t" id="hqCar"></div>
+      <div class="hq-s">Оставьте контакты, Айрат рассчитает стоимость под ключ и подберёт варианты.</div>
+      <input class="finp" type="text" id="hqName" placeholder="Ваше имя" autocomplete="name">
+      <input class="finp" type="tel" id="hqPhone" placeholder="Номер телефона" autocomplete="tel">
+      <label class="consent-wrap"><input class="consent-cb" type="checkbox" id="hqOk" checked><span class="consent-txt">Согласен на <a href="/policy.html" target="_blank">обработку персональных данных</a> (152-ФЗ)</span></label>
+      <button class="hq-send" onclick="hqSend(this)">Узнать цену под ключ</button>
+      <div class="hq-alt"><a id="hqTg" href="#" target="_blank">Telegram</a><a id="hqWa" href="#" target="_blank">WhatsApp</a></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var NAMES={'car1':'Li Auto L9','car2':'Zeekr 9X','car3':'Mazda CX-50','car4':'Xiaomi SU7','car5':'BMW X1'};
+  var MOBPOS={'car3':'82% 60%'}, DESKPOS={'car2':'12% 55%'};
+  var wrap=document.getElementById('heroBgWrap'); if(!wrap) return;
+  var cap=document.createElement('div'); cap.className='hcap';
+  cap.innerHTML='<div class="hcap-n" id="hcapN"></div><button type="button" class="hcap-b" onclick="hqOpen(document.getElementById(\'hcapN\').textContent)">Заказать такую &rarr;</button>';
+  (document.getElementById('hero')||wrap).appendChild(cap);
+  var cur='';
+  function key(src){var m=(src||'').match(/(car\d)\.jpg/);return m?m[1]:''}
+  function tick(){
+    var imgs=[document.getElementById('heroBgCarA'),document.getElementById('heroBgCarB')];
+    var mob=window.innerWidth<=768;
+    imgs.forEach(function(im){ if(im){var k=key(im.src); im.style.objectPosition=mob?(MOBPOS[k]||''):(DESKPOS[k]||'');} });
+    var top=imgs.filter(function(im){return im&&im.classList.contains('ready')}).sort(function(a,b){return (+b.style.zIndex||0)-(+a.style.zIndex||0)})[0]
+          || imgs.filter(function(im){return im&&im.classList.contains('active')})[0] || imgs[0];
+    var n=NAMES[key(top&&top.src)]||'';
+    if(n&&n!==cur){cur=n;cap.classList.add('fade');setTimeout(function(){document.getElementById('hcapN').textContent=n;cap.classList.remove('fade')},cur?250:0);}
+    cap.style.display=n?'':'none';
+  }
+  setInterval(tick,400); tick();
+})();
+var _hqCar='';
+function hqOpen(car){
+  _hqCar=car||'';
+  document.getElementById('hqCar').textContent=_hqCar;
+  var msg='Здравствуйте! Хочу заказать '+_hqCar+'. Сколько будет стоить под ключ?';
+  document.getElementById('hqTg').href='https://t.me/'+TG+'?text='+encodeURIComponent(msg);
+  document.getElementById('hqWa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+  document.getElementById('hqOv').classList.add('open');
+  try{_airatEvent('hero_order')}catch(e){}
+}
+function hqClose(){document.getElementById('hqOv').classList.remove('open')}
+function hqSend(btn){
+  var n=(document.getElementById('hqName').value||'').trim(), p=(document.getElementById('hqPhone').value||'').trim();
+  if(!p){alert('Укажите номер телефона');return}
+  if(!document.getElementById('hqOk').checked){alert('Нужно согласие на обработку данных');return}
+  if(typeof _checkFormRateLimit==='function'&&!_checkFormRateLimit())return;
+  btn.disabled=true;btn.textContent='Отправляем…';
+  _tgContact({name:n||'Без имени',phone:p,car:_hqCar,message:'Заявка со слайдера на главной'}).then(function(){
+    document.getElementById('hqBody').innerHTML='<div class="hq-ok">Спасибо! Айрат свяжется с вами в ближайшее время.</div>';
+  }).catch(function(){btn.disabled=false;btn.textContent='Узнать цену под ключ';alert('Не удалось отправить, напишите нам в Telegram или WhatsApp')});
+}
+</script>
 </body>
 </html>
