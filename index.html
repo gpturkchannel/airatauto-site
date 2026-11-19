@@ -1102,8 +1102,9 @@ footer{padding:28px 80px;background:var(--s1);border-top:1px solid var(--b1);dis
   k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)
 })(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=110170123","ym");
 ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+ym(114365796,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/110170123" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/110170123" style="position:absolute;left:-9999px" alt=""></div></noscript><noscript><div><img src="https://mc.yandex.ru/watch/114365796" style="position:absolute;left:-9999px" alt=""></div></noscript>
 <!-- /Yandex.Metrika counter -->
 </head>
 <body>
@@ -1128,7 +1129,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="rate-sep-line"></div>
   <div class="rate-item" id="rVTBWrap">
     <span class="r-ic r-ic-vtb">ВТБ ¥</span><span class="r-code" style="color:#4d9fff;font-weight:700">ВТБ <span style="opacity:.65;font-weight:500">(CNY)</span></span>
-    <span class="r-val" id="rVTB">12.37 ₽</span>
+    <span class="r-val" id="rVTB">12.35 ₽</span>
   </div>
   <span class="rate-upd" id="rateUpd">ЦБ РФ</span>
 </div>
@@ -1139,6 +1140,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="nav-links">
     <a href="#catalog">Каталог</a>
     <a href="#featured">Новые авто</a>
+    <a href="/gruziya/">Авто из Грузии</a>
     <a href="#customs-calc">Калькулятор</a>
     <a href="/otzyvy/">Отзывы</a>
     <a href="#about">О компании</a>
@@ -1169,6 +1171,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
 <div class="mob-menu" id="mobMenu">
   <a href="#catalog"    onclick="closeMobMenu()">Каталог</a>
   <a href="#featured"   onclick="closeMobMenu()">Новые авто</a>
+  <a href="/gruziya/"   onclick="closeMobMenu()">Авто из Грузии</a>
   <a href="#customs-calc" onclick="closeMobMenu()">Калькулятор</a>
   <a href="#reviews"    onclick="closeMobMenu()">Отзывы</a>
   <a href="#about"      onclick="closeMobMenu()">О компании</a>
@@ -3302,8 +3305,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN, курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.0873;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.3650;
-const _VTB_TIME = '2026-11-19T12:20:00.119';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.3505;
+const _VTB_TIME = '2026-11-19T14:20:00.927';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
 let _USD_RUB  = 80.0;  // 19.11: курс доллара ЦБ (обновляется живым курсом)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
@@ -4672,7 +4675,7 @@ function runTCCalc() {
   </div>
 </div>
 <script>
-function ymGoal(g){try{ym(110170123,'reachGoal',g)}catch(e){}}
+function ymGoal(g){try{ym(110170123,'reachGoal',g)}catch(e){}try{ym(114365796,'reachGoal',g)}catch(e){}}
 (function(){try{var q=new URLSearchParams(location.search),o={},has=false;['utm_source','utm_medium','utm_campaign','utm_term','yclid'].forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,80);has=true}});if(has)localStorage.setItem('airat_utm',JSON.stringify(o))}catch(e){}})();
 function _utmTail(){try{var u=JSON.parse(localStorage.getItem('airat_utm')||'{}');var s=[u.utm_source,u.utm_medium,u.utm_campaign,u.utm_term].filter(Boolean).join(' / ');return s?'\nИсточник: '+s:''}catch(e){return ''}}
 var ALL_BRANDS=['Toyota','Honda','Volkswagen','Mazda','Nissan','Hyundai','KIA','Skoda','Audi','BMW','Mercedes','Lexus','Subaru','Mitsubishi','Porsche','Volvo','Land Rover','Infiniti','Genesis','Ford','Chevrolet','Buick','Cadillac','Jeep','Peugeot','Citroen','Renault','MINI','Li Auto (Lixiang)','Zeekr','Geely','Chery','Haval','Tank','Wey','Changan','Deepal','Avatr','BYD','Denza','Exeed','Jetour','Omoda','Jaecoo','Tenet','Voyah','Lynk & Co','Hongqi','Great Wall','GAC','Aito','Xpeng','Nio','Leapmotor','Dongfeng','Baic','Rox','Smart'];
