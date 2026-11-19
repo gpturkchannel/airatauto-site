@@ -976,6 +976,8 @@ footer{padding:28px 80px;background:var(--s1);border-top:1px solid var(--b1);dis
   .tc-inputs{display:flex;flex-direction:column;gap:16px;min-width:280px;flex:1}
   .tc-field{display:flex;flex-direction:column;gap:6px}
   .tc-lbl{font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em}
+  .tc-cur{background:transparent;border:none;border-left:1px solid rgba(255,255,255,.08);color:var(--t2);font:600 13px inherit;font-family:inherit;padding:0 10px;height:100%;cursor:pointer;outline:none}
+  .tc-cur option{background:#14151b;color:#fff}
   .tc-input-wrap{display:flex;align-items:center;background:var(--bg3);border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden}
   .tc-input{background:transparent;border:none;outline:none;padding:11px 14px;font-size:16px;color:var(--t1);font-family:inherit;flex:1;min-width:0}
   .tc-input::-webkit-inner-spin-button,.tc-input::-webkit-outer-spin-button{opacity:.3}
@@ -1506,7 +1508,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
         <label class="tc-lbl">Цена авто в Китае</label>
         <div class="tc-input-wrap">
           <input type="number" id="tcPrice" class="tc-input" value="125800" min="0" step="1000" placeholder="125 800">
-          <span class="tc-unit">¥</span>
+          <select id="tcCur" class="tc-cur" onchange="tcCurChange()" aria-label="Валюта"><option value="CNY">¥ юани</option><option value="USD">$ доллары</option></select>
         </div>
       </div>
       <div class="tc-field">
@@ -1652,6 +1654,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="sec-ey rv">Отзывы</div>
   <h2 class="sec-h rv2">Клиенты говорят<br>лучше нас</h2>
   <div class="rv-videos"><div class="rv-v"><video controls playsinline preload="none" poster="/reviews/vr_kia.jpg"><source src="/reviews/vr_kia.mp4" type="video/mp4"></video><div><b>Видеоотзыв владелицы KIA</b>Рассказывает, как прошла покупка и что получила</div></div><div class="rv-v"><video controls playsinline preload="none" poster="/reviews/vr_client2.jpg"><source src="/reviews/vr_client2.mp4" type="video/mp4"></video><div><b>Видеоотзыв клиента</b>Забрал машину и делится впечатлениями</div></div></div><div class="rv-cards"><div class="rv-c"><q>Хочу выразить слова благодарности за содействие в покупке автомобиля из Китая. Понимаю, что процесс сопряжён с нюансами, и то, что мы вместе их преодолели, большая заслуга. Особенно хочу отметить, что всё сложилось благополучно, самое главное, мы влезли в свой бюджет и очень остались довольны автомобилем. Гибкость и готовность идти навстречу помогли решить вопросы, и я очень это ценю. Машина реально классная!</q><b>Клиент из Казани</b><small>Кроссовер из Китая · Казань</small><details><summary>Показать переписку</summary><img loading="lazy" src="/reviews/r_kazan.jpg" alt="Отзыв: Клиент из Казани"></details></div><div class="rv-c"><q>Ребята, спасибо вам огромное, машина превзошла все мои ожидания, безмерно рада и благодарна вам! Учли все мои запросы и пожелания и подобрали оптимальный вариант!</q><b>Дина</b><small>Mazda CX-5</small><details><summary>Показать переписку</summary><img loading="lazy" src="/reviews/r_dina.jpg" alt="Отзыв: Дина"></details></div><div class="rv-c"><q>Айрат, Александр, благодарю за быструю и качественную доставку автомобиля! Всё прошло чётко, профессионально и без лишних хлопот. Очень довольны результатом. Вы действительно лучшие!</q><b>Артур</b><small>Mercedes-Benz</small><details><summary>Показать переписку</summary><img loading="lazy" src="/reviews/r_artur.jpg" alt="Отзыв: Артур"></details></div><div class="rv-c"><q>Большое спасибо Айрату и Александру за новый автомобиль! Всё прошло отлично: как и говорили, полтора месяца, и машина уже приехала! Номера получил тоже без проблем!</q><b>Александр</b><small>KIA Seltos</small><details><summary>Показать переписку</summary><img loading="lazy" src="/reviews/r_aleksandr.jpg" alt="Отзыв: Александр"></details></div></div><h2>Выдачи клиентам</h2><div class="rv-strip"><div><video controls playsinline preload="none" poster="/reviews/vd_avtovoz.jpg"><source src="/reviews/vd_avtovoz.mp4" type="video/mp4"></video><span>Машины приехали на автовозе</span></div><div><img loading="lazy" src="/reviews/r_vydacha_kia.jpg" alt="Выдача KIA K3"><span>Выдача KIA K3</span></div><div><video controls playsinline preload="none" poster="/reviews/vd_cx5.jpg"><source src="/reviews/vd_cx5.mp4" type="video/mp4"></video><span>Mazda CX-5 после доставки</span></div><div><video controls playsinline preload="none" poster="/reviews/vd_zhukovsky.jpg"><source src="/reviews/vd_zhukovsky.mp4" type="video/mp4"></video><span>Выдача в Жуковском</span></div><div><video controls playsinline preload="none" poster="/reviews/vd_white.jpg"><source src="/reviews/vd_white.mp4" type="video/mp4"></video><span>Осмотр машины при выдаче</span></div><div><video controls playsinline preload="none" poster="/reviews/vd_cx5b.jpg"><source src="/reviews/vd_cx5b.mp4" type="video/mp4"></video><span>Mazda CX-5, обзор при выдаче</span></div></div>
+  
   <div style="text-align:center;margin-top:6px"><a class="btn-o" href="/otzyvy/" style="display:inline-flex">Все отзывы и выдачи</a></div>
 </section>
 
@@ -1706,6 +1709,7 @@ ym(110170123,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
         <div class="cl-icon cl-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12.001c0 1.822.473 3.53 1.299 5.016L2 22l5.099-1.278A9.946 9.946 0 0012 22c5.523 0 10-4.478 10-10S17.523 2 12 2zm0 18c-1.74 0-3.36-.474-4.753-1.295l-.34-.202-3.027.759.803-2.958-.22-.352A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg></div>
         <div><div class="cl-lbl">WhatsApp</div><div class="cl-val" data-phtext></div></div>
       </a>
+      
       <a href="#" class="cl rv3" data-phtel>
         <div class="cl-icon cl-ph"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.21 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
         <div><div class="cl-lbl">Телефон</div><div class="cl-val" data-phtext></div></div>
@@ -3298,6 +3302,7 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 let _CNY_RATE = 12.0873;  // ЦБ (обновляется живым курсом)
 let _VTB_RATE = 12.5620;
 const _VTB_TIME = '2026-11-19T06:05:00.179';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _USD_RUB  = 80.0;  // 19.11: курс доллара ЦБ (обновляется живым курсом)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
 const _BANK_PCT = 0.00;    // банковская комиссия (ВТБ включает в курс, уже в _VTB_RATE)
@@ -4455,7 +4460,8 @@ renderFeatured();
       setRate('rCNY', cny, 2);
       _CNY_RATE = cny;
     }
-    if (v && v.USD) setRate('rUSD', v.USD.Value / (v.USD.Nominal || 1), 2);
+    if (v && v.USD) { _USD_RUB = v.USD.Value / (v.USD.Nominal || 1); setRate('rUSD', _USD_RUB, 2); }
+    try { runTCCalc(); } catch (e) {}
     if (v && v.EUR) {
       _EUR_RUB = v.EUR.Value / (v.EUR.Nominal || 1);
       setRate('rEUR', _EUR_RUB, 2);
@@ -4475,7 +4481,7 @@ renderFeatured();
           const toRub = code => rates[code] ? +(1 / rates[code]).toFixed(4) : null;
           const cny = toRub('CNY'), usd = toRub('USD'), eur = toRub('EUR');
           if (cny) { setRate('rCNY', cny, 2); _CNY_RATE = cny; }
-          if (usd) setRate('rUSD', usd, 2);
+          if (usd) { _USD_RUB = usd; setRate('rUSD', usd, 2); }
           if (eur) { _EUR_RUB = eur; setRate('rEUR', eur, 2); }
           markUpdated('er-api', d.time_last_update_utc || '');
         })
@@ -4526,61 +4532,101 @@ document.querySelectorAll('.btn-open-catalog,.m-calc-btn').forEach(btn => {
 });
 
 
+// 19.11: смена валюты в таможенном калькуляторе (юани / доллары), бегунок подстраивается
+function tcCurChange() {
+  var inp = document.getElementById('tcPrice'), cur = document.getElementById('tcCur').value;
+  var prev = inp.dataset.cur || 'CNY';
+  if (prev !== cur) {
+    var rub = (parseFloat(inp.value) || 0) * (prev === 'USD' ? _USD_RUB : _CNY_RATE);
+    var step = cur === 'USD' ? 100 : 1000;
+    inp.value = Math.round(rub / (cur === 'USD' ? _USD_RUB : _CNY_RATE) / step) * step;
+    inp.step = step; inp.dataset.cur = cur;
+    var w = inp.closest('.tc-input-wrap'), r = w && w.nextElementSibling;
+    if (r && r.classList.contains('tc-range')) {
+      if (cur === 'USD') { r.min = 4000; r.max = 90000; r.step = 100; } else { r.min = 30000; r.max = 600000; r.step = 1000; }
+      r.value = inp.value;
+    }
+  }
+  runTCCalc();
+}
+
 // ── Таможенный калькулятор ──
 function runTCCalc() {
-  const priceYuan = parseFloat(document.getElementById('tcPrice').value) || 0;
+  const priceIn   = parseFloat(document.getElementById('tcPrice').value) || 0;
   const cc        = parseInt(document.getElementById('tcCC').value) || 2000;
   const age       = document.getElementById('tcAge').value;
   const res       = document.getElementById('tcResult');
   const inner     = document.getElementById('tcResultInner');
+  const cur       = (document.getElementById('tcCur') || {}).value || 'CNY';
+  const curRate   = cur === 'USD' ? _USD_RUB : _CNY_RATE;
+  const curSign   = cur === 'USD' ? '$' : '¥';
+  const priceYuan = priceIn;
 
-  if (priceYuan <= 0) {
+  if (priceIn <= 0) {
     inner.innerHTML = '<div style="color:var(--t3);font-size:13px">Введите цену автомобиля</div>';
     res.style.display = 'flex';
     return;
   }
 
-  // Таможенная стоимость считается по курсу ЦБ (официальный), не ВТБ
+  // Таможенная стоимость по официальному курсу ЦБ
   const eurRate  = _EUR_RUB;
-  const CUST_FEE = 13541;  // фиксированный сбор за таможенное оформление
+  const priceRub = priceIn * curRate;
+  const pEur     = priceRub / eurRate;
 
-  // Цена в EUR по официальному курсу ЦБ (для расчёта ЕАЭС-ставки)
-  const pEur = priceYuan * _CNY_RATE / eurRate;
+  // 19.11: сбор за таможенное оформление по таможенной стоимости (как в нашей таблице и на tks.ru)
+  const CUST_FEE = priceRub <= 200000 ? 1231 : priceRub <= 450000 ? 2462 : priceRub <= 1200000 ? 4924 :
+                   priceRub <= 2700000 ? 13541 : priceRub <= 4200000 ? 18465 : priceRub <= 5500000 ? 21344 :
+                   priceRub <= 10000000 ? 49240 : 73860;
 
-  // ── Растаможка ЕАЭС (физлицо) ────────────────────────────────────────────
+  // ── Пошлина ЕАЭС (физлицо) ──
   let customsRub = 0;
   if (age === 'young') {
-    // До 3 лет: от стоимости и объёма, берём максимум
-    let pct, mpc;
-    if      (pEur <=  8500) { pct = 0.54; mpc = 2.5;  }
-    else if (pEur <= 16700) { pct = 0.48; mpc = 3.5;  }
-    else if (pEur <= 42300) { pct = 0.48; mpc = 5.5;  }
-    else if (pEur <= 84500) { pct = 0.48; mpc = 7.5;  }
-    else if (pEur <=169000) { pct = 0.48; mpc = 15.0; }
-    else                    { pct = 0.48; mpc = 20.0; }
-    customsRub = Math.round(Math.max(pct * pEur, cc * mpc) * eurRate);
+    let pct = pEur <= 8500 ? 0.54 : 0.48, mpc;
+    if      (pEur <=  8500) mpc = 2.5;
+    else if (pEur <= 16700) mpc = 3.5;
+    else if (pEur <= 42300) mpc = 5.5;
+    else if (pEur <= 84500) mpc = 7.5;
+    else if (pEur <=169000) mpc = 15.0;
+    else                    mpc = 20.0;
+    customsRub = Math.max(pct * pEur, cc * mpc) * eurRate;
   } else if (age === '3-5') {
-    customsRub = Math.round((cc <= 1000 ? cc*1.5 : cc <= 1500 ? cc*1.7 :
-                             cc <= 1800 ? cc*2.5 : cc <= 2300 ? cc*2.7 :
-                             cc <= 3000 ? cc*3.0 : cc*3.6) * eurRate);
-  } else if (age === '5-7') {
-    customsRub = Math.round((cc <= 1000 ? cc*3.0 : cc <= 1500 ? cc*3.2 :
-                             cc <= 1800 ? cc*3.5 : cc <= 2300 ? cc*4.8 :
-                             cc <= 3000 ? cc*5.0 : cc*5.7) * eurRate);
+    customsRub = cc * (cc <= 1000 ? 1.5 : cc <= 1500 ? 1.7 : cc <= 1800 ? 2.5 : cc <= 2300 ? 2.7 : cc <= 3000 ? 3.0 : 3.6) * eurRate;
   } else {
-    // 7+ лет
-    customsRub = Math.round((cc <= 1000 ? cc*3.0 : cc <= 1500 ? cc*3.2 :
-                             cc <= 1800 ? cc*3.5 : cc <= 2300 ? cc*4.8 :
-                             cc <= 3000 ? cc*5.0 : cc*5.7) * eurRate);
+    customsRub = cc * (cc <= 1000 ? 3.0 : cc <= 1500 ? 3.2 : cc <= 1800 ? 3.5 : cc <= 2300 ? 4.8 : cc <= 3000 ? 5.0 : 5.7) * eurRate;
   }
+  customsRub = Math.round(customsRub * 100) / 100;
 
-  // ── Утилизационный сбор (физлицо, личное использование) ─────────────────
-  // Фиксированная ставка: до 3 лет = 3 400 ₽, от 3 лет = 5 200 ₽
+  // ── Утилизационный сбор: база 20 000 ₽ × коэффициент по объёму и мощности (наша таблица) ──
   const hpIn = parseInt(document.getElementById('tcHP').value) || 0;
-  const noLgota = hpIn > 160 || cc > 3000;
-  const utilRub = noLgota ? 0 : ((age === 'young') ? 3400 : 5200);
+  const HP_STEPS = [0,160.01,190.01,220.01,250.01,280.01,310.01,340.01,370.01,400.01,430.01,460.01,500.01];
+  const UTIL_YOUNG = {
+    1000: [15.36,15.36,15.84,16.2,17.28,17.28,17.28,17.28,17.28,17.28,17.28,17.28,17.28],
+    2000: [45,45,47.64,50.52,57.12,64.56,72.96,83.16,94.8,108,123.24,140.4,160.08],
+    3000: [115.34,115.34,118.2,120.12,126,131.04,136.32,141.72,147.48,153.36,159.48,165.84,172.44],
+    3500: [129.2,131.76,134.4,137.16,140.52,144,151.92,160.32,169.2,178.44,188.28,198.6,209.52],
+    9999: [164.53,167.28,170.16,173.04,176.52,180,186.36,192.88,199.68,206.64,213.84,221.28,229.08]
+  };
+  const UTIL_OLD = {
+    1000: [28.43,28.43,29.28,30.12,30.12,30.12,30.12,30.12,30.12,30.12,30.12,30.12,30.12],
+    2000: [74.64,74.64,79.2,83.88,91.92,100.56,110.16,120.6,132,144.6,158.4,173.4,189.84],
+    3000: [172.8,172.8,175.08,177.6,183,188.52,193.68,199.08,204.72,210.48,216.36,222.36,228.6],
+    3500: [197.81,200.04,202.2,204.36,207.24,212.4,217.8,224.28,231,237.96,245.04,252.48,260.04],
+    9999: [216.29,219.48,222.84,226.2,231.36,236.64,249.6,263.4,277.92,293.16,309.36,326.4,344.28]
+  };
+  const lgota = hpIn <= 160 && cc <= 3000;
+  let utilRub, utilK = 0;
+  if (lgota) {
+    utilRub = age === 'young' ? 3400 : 5200;
+  } else {
+    const tbl = age === 'young' ? UTIL_YOUNG : UTIL_OLD;
+    const row = cc <= 1000 ? tbl[1000] : cc <= 2000 ? tbl[2000] : cc <= 3000 ? tbl[3000] : cc <= 3500 ? tbl[3500] : tbl[9999];
+    let i = 0; while (i + 1 < HP_STEPS.length && hpIn >= HP_STEPS[i + 1]) i++;
+    utilK = row[i];
+    utilRub = Math.round(20000 * utilK * 100) / 100;
+  }
+  const noLgota = false;
 
-  // ── Итого таможенных платежей ────────────────────────────────────────────
+  // ── Итого ──
   const total = customsRub + utilRub + CUST_FEE;
 
   const fmtR = v => new Intl.NumberFormat('ru-RU', {maximumFractionDigits:0}).format(v) + ' ₽';
@@ -4588,23 +4634,23 @@ function runTCCalc() {
 
   const waText = encodeURIComponent(
     `Расчёт таможни. AIRAT AUTO\n` +
-    `Цена авто: ${new Intl.NumberFormat('ru-RU').format(priceYuan)} ¥\n` +
+    `Цена авто: ${new Intl.NumberFormat('ru-RU').format(priceIn)} ${curSign}\n` +
     `Объём: ${cc} см³  Возраст: ${ageLabel}\n` +
-    `Курс ЦБ: ${_CNY_RATE.toFixed(2)} ₽/¥  EUR: ${eurRate.toFixed(0)} ₽\n\n` +
+    `Мощность: ${hpIn} л.с.\nКурс ЦБ: ${curRate.toFixed(2)} ₽/${curSign}  EUR: ${eurRate.toFixed(2)} ₽\n\n` +
     `Растаможка: ${fmtR(customsRub)}\n` +
-    `Утилизационный сбор: ${noLgota ? 'не льготный, уточнить' : fmtR(utilRub)}\n` +
+    `Утилизационный сбор: ${fmtR(utilRub)}\n` +
     `Таможенное оформление: ${fmtR(CUST_FEE)}\n` +
-    `ИТОГО растаможка: ${fmtR(total)}`
+    `ИТОГО таможня с утильсбором: ${fmtR(total)}`
   );
 
   inner.innerHTML =
     `<div style="font-size:11px;color:var(--t3);opacity:.7;margin-bottom:12px">` +
-    `курс ЦБ: ¥ = ${_CNY_RATE.toFixed(2)} ₽ · EUR = ${eurRate.toFixed(0)} ₽ · ${Math.round(pEur).toLocaleString('ru-RU')} €</div>` +
-    `<div class="tc-row"><span class="tc-row-lbl">Растаможка (ЕАЭС)</span><span class="tc-row-val">${fmtR(customsRub)}</span></div>` +
-    `<div class="tc-row"><span class="tc-row-lbl">Утилизационный сбор</span><span class="tc-row-val">${noLgota ? 'льгота не действует' : fmtR(utilRub)}</span></div>` +
+    `курс ЦБ: ${curSign} = ${curRate.toFixed(2)} ₽ · € = ${eurRate.toFixed(2)} ₽ · стоимость ${Math.round(priceRub).toLocaleString('ru-RU')} ₽</div>` +
+    `<div class="tc-row"><span class="tc-row-lbl">Пошлина (ЕТС)</span><span class="tc-row-val">${fmtR(customsRub)}</span></div>` +
+    `<div class="tc-row"><span class="tc-row-lbl">Утилизационный сбор${lgota ? ' (льготный)' : '<br><small style="opacity:.6">20 000 ₽ × ' + String(utilK).replace('.', ',') + '</small>'}</span><span class="tc-row-val">${fmtR(utilRub)}</span></div>` +
     `<div class="tc-row"><span class="tc-row-lbl">Таможенное оформление</span><span class="tc-row-val">${fmtR(CUST_FEE)}</span></div>` +
-    `<div class="tc-total"><span class="tc-total-lbl">${noLgota ? 'Итого без утильсбора' : 'Итого таможенных платежей'}</span><span class="tc-total-val">${fmtR(total)}</span></div>` +
-    `<div class="tc-note">${noLgota ? 'Свыше 160 л.с. или 3 000 см³ льготный утильсбор не действует: он считается по коммерческой шкале и обычно составляет сотни тысяч рублей и больше. Точный расчёт пришлём в WhatsApp. ' : ''}Физлицо, личное использование. Брокер и доставка считаются отдельно.</div>` +
+    `<div class="tc-total"><span class="tc-total-lbl">Итого с утильсбором</span><span class="tc-total-val">${fmtR(total)}</span></div>` +
+    `<div class="tc-note">${lgota ? 'До 160 л.с. и 3 000 см³ действует льготный утильсбор для личного пользования. ' : 'Свыше 160 л.с. или 3 000 см³ утильсбор считается по полной шкале. '}Физлицо, личное использование. Брокер и доставка считаются отдельно.</div>` +
     `<a class="tc-wa-btn" href="${'https://wa.me/'+WA+'?text='+waText}" target="_blank">` +
     `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12.001c0 1.822.473 3.53 1.299 5.016L2 22l5.099-1.278A9.946 9.946 0 0012 22c5.523 0 10-4.478 10-10S17.523 2 12 2zm0 18c-1.74 0-3.36-.474-4.753-1.295l-.34-.202-3.027.759.803-2.958-.22-.352A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>` +
     `Уточнить у менеджера в WhatsApp</a>`;
@@ -4719,6 +4765,57 @@ var r=window.runTCCalc,used=false;if(typeof r==='function')window.runTCCalc=func
   add('tcPrice',30000,600000,1000);add('tcCC',800,3500,50);add('tcHP',60,400,5);
   var a=document.getElementById('tcAge');if(a)a.addEventListener('change',function(){window._tcTouched=1;runTCCalc()});try{runTCCalc()}catch(e){}})();
 (function(){try{if(typeof showStep==='function')showStep(typeof curStep==='number'?curStep:0)}catch(e){}})();
+</script>
+
+<style>
+.cl-max{background:rgba(120,90,255,.12);color:#9b86ff;font-size:10px;font-weight:800;letter-spacing:.5px}
+.msgr{margin:2px 0 10px}
+.msgr-t{font-size:12px;color:var(--t3);margin:0 0 7px;letter-spacing:.2px}
+.msgr-row{display:flex;flex-wrap:wrap;gap:6px}
+.msgr-row button{flex:1 1 auto;min-width:64px;padding:9px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:var(--t2);font:600 13px/1 inherit;font-family:inherit;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.msgr-row button:hover{border-color:rgba(255,255,255,.22)}
+.msgr-row button.on{border-color:var(--gold);background:rgba(192,154,80,.1);color:#fff}
+.rvb-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:28px 0 8px}
+.rvb{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:14px;background:rgba(19,20,26,.7);border:1px solid rgba(255,255,255,.08);color:var(--t1);text-decoration:none;transition:border-color .25s,transform .25s}
+.rvb:hover{border-color:rgba(192,154,80,.5);transform:translateY(-2px)}
+.rvb b{display:block;font-size:14px}.rvb i{display:block;font-style:normal;font-size:11px;color:var(--t3);margin-top:2px}
+.rvb-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#fff;flex-shrink:0}
+.rvb-ya{background:#fc3f1d;font-size:18px}.rvb-2g{background:#19aa1e;font-size:10px}
+</style>
+<script>
+// 19.11: выбор удобного способа связи во всех формах заявки
+(function(){
+  var OPTS=['Звонок','WhatsApp','Telegram','MAX'];
+  function make(){
+    var w=document.createElement('div');w.className='msgr';
+    w.innerHTML='<div class="msgr-t">Как вам удобнее связаться?</div><div class="msgr-row">'+OPTS.map(function(o,i){return '<button type="button"'+(i===0?' class="on"':'')+' data-v="'+o+'">'+o+'</button>'}).join('')+'</div>';
+    w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;e.preventDefault();e.stopPropagation();
+      w.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');});
+    return w;
+  }
+  function inject(root){
+    (root||document).querySelectorAll('input[type=tel]').forEach(function(inp){
+      if(inp.dataset.msgr)return;inp.dataset.msgr='1';
+      if(inp.closest('.msgr'))return;
+      var box=inp.parentElement; if(!box||box.querySelector('.msgr'))return;
+      var w=make();
+      if(box.classList.contains('qpr-f')){box.parentNode.insertBefore(w,box);}
+      else{inp.parentNode.insertBefore(w,inp.nextSibling);}
+    });
+  }
+  window._msgrLast='';
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b||b.closest('.msgr'))return;window._msgrLast='';
+    var el=b;while(el&&el!==document.body){var m=el.querySelector&&el.querySelector('.msgr .on');if(m){window._msgrLast=m.getAttribute('data-v');return}el=el.parentElement}
+  },true);
+  var t=window._tgContact;
+  if(typeof t==='function')window._tgContact=function(d){
+    d=d||{};if(window._msgrLast){d.message='Удобная связь: '+window._msgrLast+(d.message?'\n'+d.message:'');}
+    return t(d);
+  };
+  function go(){inject();try{new MutationObserver(function(){inject()}).observe(document.body,{childList:true,subtree:true})}catch(e){}}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
 </script>
 
 </body>
