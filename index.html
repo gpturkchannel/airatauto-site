@@ -624,7 +624,7 @@ footer{padding:28px 80px;background:var(--s1);border-top:1px solid var(--b1);dis
 .tb b{font-size:16px} .tb span{font-size:12px;opacity:.85}
 .tb-tg{background:#229ED9} .tb-yt{background:#E62117} .tb-wa{background:#1DA851} .tb-max{background:#5b43d6}
 .trust-btns:has(.tb-max){grid-template-columns:repeat(4,1fr)}
-@media(max-width:768px){#trust{padding:22px 16px 4px} .trust-btns{grid-template-columns:1fr} .trust-t{font-size:19px}}
+@media(max-width:768px){#trust{padding:22px 16px 4px} .trust-btns,.trust-btns:has(.tb-max){grid-template-columns:1fr 1fr;gap:8px} .tb{padding:12px 12px;min-width:0} .tb b{font-size:15px} .tb span{font-size:11px;line-height:1.3} .trust-t{font-size:19px}}
 .calc-cta{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;margin:0 0 14px;padding:15px 14px;border:none;border-radius:14px;
   background:linear-gradient(135deg,#e2283a,#b8121f);color:#fff;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(214,31,44,.35);font-family:inherit}
 .calc-cta span{font-size:12px;font-weight:500;opacity:.85}
@@ -1000,7 +1000,7 @@ footer{padding:28px 80px;background:var(--s1);border-top:1px solid var(--b1);dis
     .tc-result{min-width:unset;width:100%;box-sizing:border-box}
   }
 /* LVL7_1117: без светофора, отзывы, квиз, калькулятор */
-.tb-tg,.tb-yt,.tb-wa,.pg-tg,.pg-wa{background:#1B1C25!important;border:1px solid rgba(255,255,255,.14)!important;color:#fff!important}
+.tb-tg,.tb-yt,.tb-wa,.tb-max,.pg-tg,.pg-wa{background:#1B1C25!important;border:1px solid rgba(255,255,255,.14)!important;color:#fff!important}
 #mCta .mc-tg,#mCta .mc-wa,.mc-ic{background:#1B1C25!important;border:1px solid rgba(255,255,255,.16)!important}
 .cpop-icon{background:#252632!important}
 .cl-icon{background:rgba(255,255,255,.06)!important;color:#fff!important}
