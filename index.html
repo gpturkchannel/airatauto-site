@@ -1129,7 +1129,7 @@ ym(114365796,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="rate-sep-line"></div>
   <div class="rate-item" id="rVTBWrap">
     <span class="r-ic r-ic-vtb">ВТБ ¥</span><span class="r-code" style="color:#4d9fff;font-weight:700">ВТБ <span style="opacity:.65;font-weight:500">(CNY)</span></span>
-    <span class="r-val" id="rVTB">12.52 ₽</span>
+    <span class="r-val" id="rVTB">12.38 ₽</span>
   </div>
   <span class="rate-upd" id="rateUpd">ЦБ РФ</span>
 </div>
@@ -3310,8 +3310,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN, курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.0873;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.5170;
-const _VTB_TIME = '2026-11-24T07:35:00.124';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.3770;
+const _VTB_TIME = '2026-11-24T11:50:00.101';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
 let _USD_RUB  = 80.0;  // 19.11: курс доллара ЦБ (обновляется живым курсом)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
@@ -3586,7 +3586,7 @@ const featuredCars = [{"brand": "Honda", "model": "XR-V", "year": 2024, "car_ym"
 // Cinematic hero, красивые суперкары с A/B crossfade
 // Первой стоит Ferrari с индустриальным фоном (деревянные ящики, "Air" надпись)
 const HERO_CARS = [
-  '/hero/car2.jpg?v=1119', '/hero/car3.jpg?v=1119', '/hero/car4.jpg?v=1119', '/hero/car5.jpg?v=1119',  // car1 = Li L9, добавить когда будет фото
+  '/hero/carA1.jpg?v=1124', '/hero/carA2.jpg?v=1124', '/hero/carA3.jpg?v=1124', '/hero/carA4.jpg?v=1124', '/hero/carA5.jpg?v=1124',  // 24.11: Айрат в Китае
 ];
 // Мобиль: crop снизу, показываем больше машины, меньше неба
 // 13.10: на телефоне машина целиком, горизонтальная полоса между заголовком и кнопками (без обрезки до решётки)
@@ -4843,6 +4843,9 @@ var r=window.runTCCalc,used=false;if(typeof r==='function')window.runTCCalc=func
 
 <style>
 /* 19.11: подпись машины в слайдере + быстрый заказ */
+.hero-car-bg-wrap{pointer-events:auto;cursor:pointer}
+@media(min-width:769px){.hero-car-bg-wrap{width:60%}.hero-car-bg.ready{filter:brightness(.84) saturate(.95)}}
+.about-av{background:url(/hero/carA0.jpg?v=1124) center/cover no-repeat!important;font-size:0!important;width:84px!important;height:84px!important;border-radius:50%!important;border:2px solid rgba(192,154,80,.55)!important}
 .hcap{position:absolute;right:36px;bottom:58px;z-index:30;pointer-events:auto;text-align:right;transition:opacity .5s}
 .hcap.fade{opacity:0}
 .hcap-n{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:600}
@@ -4879,14 +4882,14 @@ var r=window.runTCCalc,used=false;if(typeof r==='function')window.runTCCalc=func
 </div>
 <script>
 (function(){
-  var NAMES={'car1':'Li Auto L9','car2':'Zeekr 9X','car3':'Mazda CX-50','car4':'Xiaomi SU7','car5':'BMW X1'};
-  var MOBPOS={'car3':'82% 60%'}, DESKPOS={'car2':'12% 55%'};
+  var NAMES={'carA1':'Айрат, основатель AIRAT AUTO · с 2004 года','carA2':'Переговоры в автосалоне в Китае','carA3':'Проверяем машину и документы на месте','carA4':'Личные встречи с продавцами в Китае','carA5':'Каждую сделку веду лично'};
+  var MOBPOS={'carA1':'50% 22%','carA2':'50% 55%','carA3':'50% 22%','carA4':'50% 24%','carA5':'50% 24%'}, DESKPOS={'carA1':'48% 28%','carA2':'62% 50%','carA3':'45% 28%','carA4':'50% 28%','carA5':'45% 28%'};
   var wrap=document.getElementById('heroBgWrap'); if(!wrap) return;
   var cap=document.createElement('div'); cap.className='hcap';
-  cap.innerHTML='<div class="hcap-n" id="hcapN"></div><button type="button" class="hcap-b" onclick="hqOpen(document.getElementById(\'hcapN\').textContent)">Заказать такую &rarr;</button>';
+  cap.innerHTML='<div class="hcap-n" id="hcapN"></div><button type="button" class="hcap-b" onclick="document.getElementById(\'about\').scrollIntoView({behavior:\'smooth\'})">Познакомиться с Айратом &rarr;</button>';
   (document.getElementById('hero')||wrap).appendChild(cap);
   var cur='';
-  function key(src){var m=(src||'').match(/(car\d)\.jpg/);return m?m[1]:''}
+  function key(src){var m=(src||'').match(/(car[A-Z]?\d)\.jpg/);return m?m[1]:''}
   function tick(){
     var imgs=[document.getElementById('heroBgCarA'),document.getElementById('heroBgCarB')];
     var mob=window.innerWidth<=768;
@@ -4898,6 +4901,7 @@ var r=window.runTCCalc,used=false;if(typeof r==='function')window.runTCCalc=func
     cap.style.display=n?'':'none';
   }
   setInterval(tick,400); tick();
+  wrap.addEventListener('click',function(){var a=document.getElementById('about');if(a)a.scrollIntoView({behavior:'smooth'})});
 })();
 var _hqCar='';
 function hqOpen(car){
