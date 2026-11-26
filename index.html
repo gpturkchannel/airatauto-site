@@ -1130,7 +1130,7 @@ ym(114365796,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="rate-sep-line"></div>
   <div class="rate-item" id="rVTBWrap">
     <span class="r-ic r-ic-vtb">ВТБ ¥</span><span class="r-code" style="color:#4d9fff;font-weight:700">ВТБ <span style="opacity:.65;font-weight:500">(CNY)</span></span>
-    <span class="r-val" id="rVTB">12.59 ₽</span>
+    <span class="r-val" id="rVTB">12.42 ₽</span>
   </div>
   <span class="rate-upd" id="rateUpd">ЦБ РФ</span>
 </div>
@@ -1198,13 +1198,12 @@ ym(114365796,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
     <div class="hero-car-fade"></div>
   </div>
   <!-- 25.11: предложение недели -->
-  <a class="wk" href="#" onclick="openWeekCar(event)" aria-label="Предложение недели: Volkswagen Tharu XR 2026, 2 100 000 рублей">
+  <a class="wk" href="#" onclick="openWeekCar(event)" aria-label="Предложение недели: Volkswagen Tharu XR 2026, 1 800 000 рублей">
     <img src="/hero/carW0.jpg?v=1125" alt="Volkswagen Tharu XR 2026" width="480" height="270">
     <span class="wk-b">
       <span class="wk-e">Предложение недели</span>
-      <span class="wk-t">VW Tharu XR · 2026</span>
-      <span class="wk-p">2 100 000 ₽</span>
-      <span class="wk-s">новый, цена в России</span>
+      <span class="wk-t">VW Tharu XR 2026</span>
+      <span class="wk-p">1 800 000 ₽ <s>1 820 000</s></span>
     </span>
   </a>
   <!-- Atmospheric orbs -->
@@ -3321,8 +3320,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN, курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.3154;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.5920;
-const _VTB_TIME = '2026-11-26T05:35:00.161';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.4180;
+const _VTB_TIME = '2026-11-26T12:35:00.166';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
 let _USD_RUB  = 80.0;  // 19.11: курс доллара ЦБ (обновляется живым курсом)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
@@ -3795,7 +3794,7 @@ function openWeekCar(e) {
           || {brand:'VW', model:'Tharu', complect:'2026 XR 1.5L'};
   var nc = Object.assign({}, base);
   var P = []; for (var i = 1; i <= 10; i++) P.push('/hero/carW' + i + '.jpg?v=1125');
-  nc.photo_thumb = P[0]; nc.photos = P; nc._weekPrice = 2100000;
+  nc.photo_thumb = P[0]; nc.photos = P; nc._weekPrice = 1800000;
   openNewCarModal(nc);
   var t = document.getElementById('ncmTrimNav'); if (t) t.style.display = 'none';
 }
@@ -3804,7 +3803,7 @@ function openNewCarModal(nc) {
   (function(wk) {
     var ptS = document.querySelector('#ncmPriceTag .ncm-pt-sub'), ptF = document.querySelector('#ncmPriceTag .ncm-pt-from'), cx = document.getElementById('ncmComplect');
     if (ptS && !ptS.dataset.o) ptS.dataset.o = ptS.innerHTML;
-    if (ptS) ptS.innerHTML = wk ? 'предложение недели · новый автомобиль 2026 года · цена в России' : ptS.dataset.o;
+    if (ptS) ptS.innerHTML = wk ? 'предложение недели · новый автомобиль 2026 года · <s style="opacity:.6">в каталоге от 1 820 000 ₽</s>' : ptS.dataset.o;
     if (ptF) ptF.style.display = wk ? 'none' : '';
     if (cx) cx.style.display = wk ? 'none' : '';
   })(!!nc._weekPrice);
@@ -4877,15 +4876,19 @@ var r=window.runTCCalc,used=false;if(typeof r==='function')window.runTCCalc=func
 .hero-car-bg-wrap{pointer-events:auto;cursor:pointer}
 @media(min-width:769px){.hero-car-bg-wrap{width:60%}.hero-car-bg.ready{filter:brightness(.84) saturate(.95)}}
 .about-av{background:url(/hero/carA0.jpg?v=1124) center/cover no-repeat!important;font-size:0!important;width:84px!important;height:84px!important;border-radius:50%!important;border:2px solid rgba(192,154,80,.55)!important}
-.wk{position:absolute;z-index:31;top:92px;right:36px;width:200px;border-radius:14px;overflow:hidden;background:rgba(14,15,20,.6);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 12px 30px rgba(0,0,0,.35);text-decoration:none;color:#fff;transition:transform .25s,border-color .25s}
-.wk:hover{transform:translateY(-2px);border-color:rgba(192,154,80,.5)}
-.wk img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
-.wk-b{display:block;padding:9px 12px 11px}
-.wk-e{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700}
-.wk-t{display:block;font-size:12px;font-weight:600;margin-top:4px;color:rgba(255,255,255,.85)}
-.wk-p{display:block;font-size:18px;font-weight:800;margin-top:2px;letter-spacing:-.3px;color:#fff}
-.wk-s{display:block;font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
-@media(max-width:768px){.wk{top:calc(max(110px, calc(70px + env(safe-area-inset-top))) - 2px);right:14px;width:134px;border-radius:11px}.wk img{aspect-ratio:16/8.2}.wk-b{padding:6px 9px 7px}.wk-e{font-size:7.5px;letter-spacing:.9px;white-space:nowrap}.wk-t{font-size:10.5px;margin-top:2px}.wk-p{font-size:14.5px;margin-top:1px}.wk-s{font-size:8.5px;margin-top:1px}}
+/* 26.11: фото в окнах машин целиком, без обрезки колёс */
+.ncm-carousel,.ncm-photo,.ncm-no-photo{height:auto!important;aspect-ratio:4/3;max-height:min(62vh,560px);background:#0b0d12}
+.ncm-car-track img,.ncm-photo{object-fit:contain!important;object-position:center!important;background:#0b0d12}
+@media(max-width:768px){.m-gal{height:calc(75vw + 58px)!important;max-height:430px!important}.m-main{object-fit:contain!important}}
+.wk{position:absolute;z-index:31;left:80px;bottom:46px;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:12px;background:rgba(14,15,20,.35);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);text-decoration:none;color:#fff;opacity:.9;transition:opacity .25s,border-color .25s}
+.wk:hover{opacity:1;border-color:rgba(192,154,80,.45)}
+.wk img{display:block;width:62px;height:42px;object-fit:cover;border-radius:8px;flex:none}
+.wk-b{display:flex;flex-direction:column;line-height:1.25}
+.wk-e{font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;white-space:nowrap}
+.wk-t{font-size:11.5px;color:rgba(255,255,255,.72);margin-top:2px;white-space:nowrap}
+.wk-p{font-size:12.5px;font-weight:700;color:rgba(255,255,255,.95);white-space:nowrap}.wk-p s{font-weight:500;font-size:.82em;color:rgba(255,255,255,.4);margin-left:4px}
+@media(min-width:769px) and (max-width:1024px){.wk{left:40px}}
+@media(max-width:768px){.wk{left:auto;bottom:auto;right:14px;top:calc(max(110px, calc(70px + env(safe-area-inset-top))) + 4px);gap:7px;padding:4px 9px 4px 4px;border-radius:10px;background:rgba(14,15,20,.3)}.wk img{width:40px;height:40px;border-radius:7px}.wk-e{font-size:7px;letter-spacing:1px}.wk-t{font-size:9.5px;margin-top:1px}.wk-p{font-size:10.5px}}
 .hcap{position:absolute;right:36px;bottom:58px;z-index:30;pointer-events:auto;text-align:right;transition:opacity .5s}
 .hcap.fade{opacity:0}
 .hcap-n{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:600}
