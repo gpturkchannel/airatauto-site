@@ -1130,7 +1130,7 @@ ym(114365796,"init",{webvisor:true,clickmap:true,accurateTrackBounce:true,trackL
   <div class="rate-sep-line"></div>
   <div class="rate-item" id="rVTBWrap">
     <span class="r-ic r-ic-vtb">ВТБ ¥</span><span class="r-code" style="color:#4d9fff;font-weight:700">ВТБ <span style="opacity:.65;font-weight:500">(CNY)</span></span>
-    <span class="r-val" id="rVTB">12.42 ₽</span>
+    <span class="r-val" id="rVTB">12.53 ₽</span>
   </div>
   <span class="rate-upd" id="rateUpd">ЦБ РФ</span>
 </div>
@@ -3320,8 +3320,8 @@ document.querySelectorAll('.rv,.rv2,.rv3,.rv4').forEach(el => obs.observe(el));
 
 // ── CUSTOMS BREAKDOWN, курсы (должны быть до render() из-за TDZ)
 let _CNY_RATE = 12.3154;  // ЦБ (обновляется живым курсом)
-let _VTB_RATE = 12.4170;
-const _VTB_TIME = '2026-11-26T16:20:00.146';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
+let _VTB_RATE = 12.5325;
+const _VTB_TIME = '2026-11-26T20:20:01.125';  // время курса ВТБ на момент сборки, rates.json применяем, только если он свежее  // ВТБ, реальный курс покупки юаней (выше ЦБ)
 let _USD_RUB  = 80.0;  // 19.11: курс доллара ЦБ (обновляется живым курсом)
 let _EUR_RUB  = 88.2826;   // курс евро (обновляется живым курсом)
 const _DELIV_Y  = 15000;   // доставка до Уссурийска, юани
